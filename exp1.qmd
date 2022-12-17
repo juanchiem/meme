@@ -47,7 +47,7 @@ raw %>%
   as_hux() %>%
   set_font_size(6) %>%
   # set_width(1) %>%
-  theme_article()
+  theme_compact()
 ```
 
 ## Variables originales
