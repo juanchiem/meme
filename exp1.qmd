@@ -45,7 +45,8 @@ url %>%
 raw %>% 
   # data.frame
   as_hux() %>%
-  set_width(1) %>%
+  set_font_size(6) %>%
+  # set_width(1) %>%
   theme_article()
 ```
 
