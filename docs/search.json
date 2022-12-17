@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "exp1.html#variables-originales",
+    "href": "exp1.html#variables-originales",
+    "title": "Invernaculo meme",
+    "section": "1 Variables originales",
+    "text": "1 Variables originales\n\n\n[[1]]\n\n\n\n\n\n\n[[2]]\n\n\n\n\n\n\n[[3]]\n\n\n\n\n\n\n[[4]]\n\n\n\n\n\n\n[[5]]\n\n\n\n\n\n\n[[6]]\n\n\n\n\n\n\n[[7]]\n\n\n\n\n\n\n\n\n\n\n\n\n\n<list_of<\n  tbl_df<\n    name     : character\n    term     : character\n    df       : integer\n    sumsq    : double\n    meansq   : double\n    statistic: double\n    p.value  : double\n  >\n>[7]>\n[[1]]\n# A tibble: 4 × 7\n  name       term          df sumsq meansq statistic p.value\n  <chr>      <chr>      <int> <dbl>  <dbl>     <dbl>   <dbl>\n1 aereo_alto bacteria       2 0.100 0.0502     0.226  0.801 \n2 aereo_alto n              1 1.61  1.61       7.26   0.0195\n3 aereo_alto bacteria:n     2 0.924 0.462      2.09   0.167 \n4 aereo_alto Residuals     12 2.66  0.221     NA     NA     \n\n[[2]]\n# A tibble: 4 × 7\n  name         term          df     sumsq    meansq statistic     p.value\n  <chr>        <chr>      <int>     <dbl>     <dbl>     <dbl>       <dbl>\n1 aereo_peso_f bacteria       2 0.000553  0.000276     0.644   0.543     \n2 aereo_peso_f n              1 0.0233    0.0233      54.4     0.00000859\n3 aereo_peso_f bacteria:n     2 0.0000385 0.0000193    0.0449  0.956     \n4 aereo_peso_f Residuals     12 0.00515   0.000429    NA      NA         \n\n[[3]]\n# A tibble: 4 × 7\n  name         term          df      sumsq     meansq statistic p.value\n  <chr>        <chr>      <int>      <dbl>      <dbl>     <dbl>   <dbl>\n1 aereo_peso_s bacteria       2 0.00000478 0.00000239    0.0819   0.922\n2 aereo_peso_s n              1 0.0000635  0.0000635     2.18     0.166\n3 aereo_peso_s bacteria:n     2 0.0000768  0.0000384     1.32     0.304\n4 aereo_peso_s Residuals     12 0.000350   0.0000292    NA       NA    \n\n[[4]]\n# A tibble: 4 × 7\n  name     term          df   sumsq  meansq statistic    p.value\n  <chr>    <chr>      <int>   <dbl>   <dbl>     <dbl>      <dbl>\n1 cont_h2o bacteria       2   0.435   0.217    0.0834  0.920    \n2 cont_h2o n              1 117.    117.      45.0     0.0000218\n3 cont_h2o bacteria:n     2   2.45    1.22     0.470   0.636    \n4 cont_h2o Residuals     12  31.3     2.60    NA      NA        \n\n[[5]]\n# A tibble: 4 × 7\n  name       term          df      sumsq     meansq statistic p.value\n  <chr>      <chr>      <int>      <dbl>      <dbl>     <dbl>   <dbl>\n1 peso_total bacteria       2 0.0000573  0.0000287      0.594   0.568\n2 peso_total n              1 0.00000825 0.00000825     0.171   0.687\n3 peso_total bacteria:n     2 0.000144   0.0000720      1.49    0.264\n4 peso_total Residuals     12 0.000579   0.0000483     NA      NA    \n\n[[6]]\n# A tibble: 4 × 7\n  name       term          df sumsq meansq statistic p.value\n  <chr>      <chr>      <int> <dbl>  <dbl>     <dbl>   <dbl>\n1 raiz_largo bacteria       2  5.45   2.72     0.338   0.720\n2 raiz_largo n              1  8.73   8.73     1.08    0.319\n3 raiz_largo bacteria:n     2 10.1    5.04     0.625   0.552\n4 raiz_largo Residuals     12 96.8    8.07    NA      NA    \n\n[[7]]\n# A tibble: 4 × 7\n  name        term          df     sumsq     meansq statistic  p.value\n  <chr>       <chr>      <int>     <dbl>      <dbl>     <dbl>    <dbl>\n1 raiz_peso_s bacteria       2 0.0000146 0.00000729      2.19  0.155  \n2 raiz_peso_s n              1 0.0000604 0.0000604      18.1   0.00111\n3 raiz_peso_s bacteria:n     2 0.0000109 0.00000544      1.63  0.236  \n4 raiz_peso_s Residuals     12 0.0000400 0.00000333     NA    NA"
+  },
+  {
+    "objectID": "exp1.html#variables-escaladas",
+    "href": "exp1.html#variables-escaladas",
+    "title": "Invernaculo meme",
+    "section": "2 Variables escaladas",
+    "text": "2 Variables escaladas\n0 = media general"
+  },
+  {
+    "objectID": "exp1.html#relacion-entre-variables",
+    "href": "exp1.html#relacion-entre-variables",
+    "title": "Invernaculo meme",
+    "section": "3 Relacion entre variables",
+    "text": "3 Relacion entre variables"
+  }
+]

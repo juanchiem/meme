@@ -1,0 +1,142 @@
+---
+title: "Invernaculo meme"
+date: '`r paste("Actualizado en", Sys.Date())`'
+format:
+  html: 
+    theme: cosmo
+    fontsize: 1.1em
+    linestretch: 1.7
+    embed-resources: true
+    toc: true
+    number-sections: true
+    colorlinks: true
+    fig-cap-location: top
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, warning = FALSE, message = FALSE, 
+                      fig.height = 6, fig.width = 7)
+pacman::p_load(tidyverse,
+               # correlation, 
+               # agricolae, 
+               # ggdendro,dendextend,
+               FactoMineR, factoextra, 
+               huxtable
+               # patchwork
+               )
+conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("select", "dplyr")
+raw <- read_csv("data/raw.csv")
+```
+
+```{r eval=F}
+pacman::p_load(googlesheets4)
+url <- "https://docs.google.com/spreadsheets/d/1q_aS7x7ozdBaI4Al8kTDHd4of_XpwIpvCdRbaK69X9k/edit?usp=sharing" 
+gs4_deauth()
+url %>% 
+  gs4_get() %>% 
+  read_sheet() %>% 
+  janitor::clean_names() %>% 
+  mutate_at(vars(n, bacteria), as.factor)%>%   
+  write_csv(., file = "data/raw.csv")  
+```
+
+```{r, eval=T}
+raw %>% 
+  # data.frame
+  as_hux() %>%
+  set_width(1) %>%
+  theme_article()
+```
+
+## Variables originales
+
+```{r, eval=T, fig.height = 3, fig.width =5}
+raw %>% 
+  # mutate(across(contains("_"), scale2)) %>%
+  pivot_longer(contains("_")) %>% 
+  # filter(!str_detect(name, "cont")) %>% 
+  group_by(name) %>% 
+  nest() %>% 
+  mutate(plot = map2(
+    data, name, 
+    ~ ggplot(data = .x, aes(x = n, y = value)) +
+      ggtitle(glue::glue("Variable: {.y}")) +
+      geom_jitter(width=.2)+
+      facet_wrap("bacteria")+
+      stat_summary(fun = "median", col = "red", geom = "crossbar") + 
+      theme_bw())
+  ) %>% 
+  pull(plot)
+```
+
+```{r, eval=FALSE}
+m1 <- lm(aereo_peso_s ~ bacteria * n, data = raw)
+performance::check_heteroscedasticity(m1)
+performance::check_normality(m1)
+anova(m1)
+```
+
+
+```{r, results='hide', eval=T}
+fixed_model <- function(.) {
+  lm(value ~ bacteria * n, data = .)
+}
+
+fits <- raw %>%  
+  pivot_longer(contains("_")) %>% 
+  # filter(!str_detect(name, "cont")) %>% 
+  group_by(name) %>% 
+  nest() %>% 
+  # select(-trt) %>%
+  # nest(data = c(trat, bq, rinde_aj)) %>% 
+  mutate(model = map(data, fixed_model),
+         model_anova = map(data, ~anova(lm(value ~ bacteria * n, .))))
+```
+
+
+```{r eval=T}
+fits %>% 
+  mutate(tidy_model = map(model_anova, broom::tidy)) %>% #,
+  # model_qual = map(model, MuMIn::r.squaredGLMM)) %>% 
+  select(name, tidy_model) %>%
+  unnest(c(tidy_model)) %>% 
+  group_by(name, .add =TRUE) %>% 
+  group_split() %>% 
+  print(n=Inf)
+```
+
+
+## Variables escaladas
+
+0 = media general
+
+```{r, eval=T}
+scale2 <- function(x, na.rm = FALSE) (x - mean(x, na.rm = na.rm)) / sd(x, na.rm)
+raw %>% 
+  mutate(across(contains("_"), scale2)) %>%
+  pivot_longer(contains("_")) %>% 
+  filter(!str_detect(name, "cont")) %>% 
+  ggplot() + 
+  aes(x=n, y=value) + 
+  geom_jitter(width=.2)+
+  facet_grid(bacteria~name, scales = "free")+
+  stat_summary(fun = "median", col = "red", geom = "crossbar") + 
+  theme_bw()
+```
+
+## Relacion entre variables
+
+```{r, results='hide', eval=T}
+raw %>% 
+  select(contains("_")) %>% 
+  # column_to_rownames(var = "trat") %>% 
+  PCA(., scale.unit=TRUE, ncp=5, graph=F) %>% 
+  fviz_pca_biplot(., 
+                  repel = TRUE,
+                  col.var = "#2E9FDF", # Variables color
+                  col.ind = "#696969"  # Individuals color
+                  ) 
+```
+
+
